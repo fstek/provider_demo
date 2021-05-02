@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'provider/persons_page.dart';
-import 'provider/detail_page.dart';
+import 'counter/counter_two.dart';
+import 'counter/counter_view.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
       /// [routes] parametresi:
       /// Adlandırılmış olan sayfaların Map halindeki listesi
       routes: {
-        '/': (context) => PersonsPage(),
-        '/detail': (context) => DetailPage(),
+        '/': (context) => CounterView(),
+        '/two': (context) => CounterTwo(),
       },
     );
   }

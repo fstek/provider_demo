@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'my_app.dart';
-import 'provider/person.dart';
+import 'counter/counter_change.dart';
 
 /// [main()] metodu:
 /// Uygulama çalıştırılacağı zaman Flutter ilk olarak bu metodu bulur
@@ -18,14 +18,20 @@ void main() => runApp(
       /// Neden buraya ekledik?: Ona erişmesi gereken widgetlerin üstünde bulunmalıdır.
       /// Burada uygulamanın en üstünde MyApp widgeti yer aldığı için MyApp widgetini sardık.
       /// Böylece MyApp'ın altındaki tüm widgetlerden enjekte ettiğimiz bu Provider değerine ulaşabiliriz.
-      /// Not: Burada kullandığımız Provider datadaki değişiklikleri
-      /// dinlemediği için herhangi bir değişiklikte UI güncellemez.
-      /// UI'ı güncellemek için bir sonraki örnekte ChangeNotifierProvider kullanılacaktır.
-      Provider(
-        /// Providerın datayı sağladığı yer Person model sınıfı
-        create: (context) => Person(),
 
-        /// Okunurlık açısından MyApp'i ayrı bir dart dosyasından oluşturduk
+      /// [ChangeNotifierProvider]:
+      /// ChangeNotifier nesnesi (instance) sağlayan bir widget’tır.
+      /// Provider paketinden gelir.
+      /// Datadaki değişiklikleri dinler ve değişen dataya erişim sağlar.
+      /// Herhangi bir değişiklikte UI'ı günceller.
+      /// Datayı sağladığı yer [CounterChange]'tır ve <type> olarak belirtilmelidir.
+      ChangeNotifierProvider<CounterChange>(
+        /// Yeni bir [CounterChange] nesnesi  ChangeNotifierProvider
+        /// tarafından rebuild edilmez. (yeniden oluşturmaz)
+        /// Nesneye ihtiyaç duyulmadığında dispose() metodunu çağırır.
+        create: (context) => CounterChange(),
+
+        /// Okunurluk açısından MyApp'i ayrı bir dart dosyasından oluşturduk
         child: MyApp(),
       ),
     );
